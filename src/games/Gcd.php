@@ -52,4 +52,3 @@ function getGcd($num1, $num2)
 {
     return (string) (gmp_gcd($num1, $num2));
 }
-

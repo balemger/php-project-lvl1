@@ -50,5 +50,3 @@ function getIterationsCount()
 {
     return 3;
 }
-
-
