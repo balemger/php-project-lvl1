@@ -2,20 +2,8 @@
 
 namespace BrainGames\Engine;
 
-use function BrainGames\Games\Calc\getCorrectAnswer;
 use function cli\line;
 use function cli\prompt;
-
-$name = '';
-$config = [
-    'userName' => $name,
-    'games' => [
-        'brain-even' => [
-            'id' => 1,
-            'regulations' => 'Answer "yes" if the number is even, otherwise answer "no".',
-        ]
-    ]
-];
 
 function welcome()
 {
@@ -32,69 +20,35 @@ function startGame($startQuestion)
     return $name;
 }
 
-function iteration($name, $gameId)
+function printWinMessage($name)
 {
-    $iteration = 0;
-
-
-    while (printQuestionAnswer($name, $gameId) === true) {
-        $iteration += 1;
-        if ($iteration === 3) {
-            line('Congratulations, %s!', $name);
-            break;
-        }
-    }
+    line('Congratulations, %s!', $name);
 }
 
-function printQuestionAnswer($name, $gameId)
+function printLoseMessage($name, $userAnswer, $correctAnswer)
 {
-    $questionAnswer = getQuestionAnswer($gameId);
-    $question = $questionAnswer['question'];
-    $correctAnswer = $questionAnswer['answer'];
+    line("'{$userAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.");
+    line('Let\'s try again, %s!', $name);
+}
 
-    $userAnswer = prompt("Question: $question");
+function printContinueMessage()
+{
+    line('Correct!');
+}
+
+function printQuestion($question)
+{
+    return prompt("Question: $question");
+}
+
+function printUserAnswer($userAnswer)
+{
     line("Your answer: $userAnswer");
-    if ($userAnswer === $correctAnswer) {
-        line('Correct!');
-        return true;
-    } else {
-        line("'{$userAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.");
-        line('Let\'s try again, %s!', $name);
-        return false;
-    }
 }
 
-function getQuestionAnswer($gameId)
+function getIterationsCount()
 {
-    $result = [];
-    if ($gameId === 'even') {
-        $result['question'] = rand(2, 99);
-        if ($result['question'] % 2 === 0) {
-            $result['answer'] = "yes";
-        } else {
-            $result['answer'] = "no";
-        }
-    } elseif ($gameId === 'calc') {
-
-        $num1 = rand(1, 50);
-        $num2 = rand(1, 50);
-        $operationIndex = rand(0, 2);
-        $operations = ['+', '-', '*'];
-
-        $result['question'] = "{$num1} {$operations[$operationIndex]} {$num2}";
-        switch ($operations[$operationIndex]) {
-            case '+':
-                $result['answer'] = (string) ($num1 + $num2);
-                break;
-            case '-':
-                $result['answer'] = (string) ($num1 - $num2);
-                break;
-            case '*':
-                $result['answer'] = (string) ($num1 * $num2);
-                break;
-        }
-
-    }
-    return $result;
+    return 3;
 }
+
 

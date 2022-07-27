@@ -1,6 +1,6 @@
 <?php
 
-namespace BrainGames\Games\Calc;
+namespace BrainGames\Games\Gcd;
 
 use function BrainGames\Engine\getIterationsCount;
 use function BrainGames\Engine\printContinueMessage;
@@ -12,12 +12,12 @@ use function BrainGames\Engine\startGame;
 
 function start()
 {
-    $name = startGame('What is the result of the expression?');
+    $name = startGame('Find the greatest common divisor of given numbers.');
     $iterationsCount = getIterationsCount();
 
     for ($iteration = 0; $iteration < $iterationsCount; $iteration += 1) {
-        $task = getRandomTask();
-        $correctAnswer = calculate($task['operation'], $task['num1'], $task['num2']);
+        $task = getRandomPare();
+        $correctAnswer = getGcd($task['num1'], $task['num2']);
 
         $userAnswer = printQuestion($task['question']);
         printUserAnswer($userAnswer);
@@ -35,35 +35,21 @@ function start()
     }
 }
 
-function getRandomTask()
+function getRandomPare()
 {
     $result = [];
-    $num1 = rand(1, 50);
-    $num2 = rand(1, 50);
-    $operationIndex = rand(0, 2);
-    $operations = ['+', '-', '*'];
+    $num1 = rand(1, 100);
+    $num2 = rand(1, 100);
 
-    $result['question'] = "{$num1} {$operations[$operationIndex]} {$num2}";
+    $result['question'] = "{$num1} {$num2}";
     $result['num1'] = $num1;
     $result['num2'] = $num2;
-    $result['operation'] = $operations[$operationIndex];
+
     return $result;
 }
 
-function calculate($operation, $num1, $num2)
+function getGcd($num1, $num2)
 {
-    $result = '';
-    switch ($operation) {
-        case '+':
-            $result = (string) ($num1 + $num2);
-            break;
-        case '-':
-            $result = (string) ($num1 - $num2);
-            break;
-        case '*':
-            $result = (string) ($num1 * $num2);
-            break;
-    }
-    return $result;
+    return (string) (gmp_gcd($num1, $num2));
 }
 
