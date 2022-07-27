@@ -2,13 +2,9 @@
 
 namespace BrainGames\Cli;
 
-use function cli\line;
-use function cli\prompt;
+use function BrainGames\Engine\welcome as welcomeMain;
 
 function welcome()
 {
-    line('Welcome to the Brain Game!');
-    $name = prompt('May I have your name?');
-    line("Hello, %s!", $name);
-    return $name;
+    welcomeMain();
 }
