@@ -1,11 +1,17 @@
 install:
 	composer install
 
+dump-autoload:
+	composer dump-autoload
+
 brain-games:
 	./bin/brain-games
 
 brain-even:
 	./bin/brain-even
+
+brain-calc:
+	./bin/brain-calc
 
 validate:
 	composer validate
