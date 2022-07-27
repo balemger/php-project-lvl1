@@ -1,5 +1,7 @@
 {
     "name": "hexlet/code",
+    "description": "My first Hexlet project",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Hexlet\\Code\\": "src/"
@@ -10,6 +12,9 @@
             "name": "balemger",
             "email": "b.alemger@gmail.com"
         }
+    ],
+    "bin": [
+        "bin/brain-games"
     ],
     "require": {}
 }
