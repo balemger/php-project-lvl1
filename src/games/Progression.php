@@ -19,7 +19,7 @@ function startBrainProgression()
     $questionAnswers = [];
     for ($i = 0; $i < ITERATIONS; $i += 1) {
         $task = getRandomProgression();
-        $question = $task['question'];
+        $question = trim($task['question']);
         $correctAnswer = $task['answer'];
         $questionAnswers[$i]['question'] = $question;
         $questionAnswers[$i]['answer'] = $correctAnswer;
@@ -39,20 +39,14 @@ function getRandomProgression()
     for ($i = 0; $i < $count; $i += 1) {
         if ($i == 0) {
             $result['elements'][$i]  = $start;
-            if ($i == $hiddenElement) {
-                $result['question'] .= '..';
-                $result['answer'] = (string) ($start);
-            } else {
-                $result['question']  .= (string) $start;
-            }
         } else {
             $result['elements'][$i]  = $result['elements'][$i - 1] + $interval;
-            if ($i == $hiddenElement) {
-                $result['question'] .= ' ..';
-                $result['answer'] = (string) ($result['elements'][$i]);
-            } else {
-                $result['question']  .= " {$result['elements'][$i]}";
-            }
+        }
+        if ($i == $hiddenElement) {
+            $result['question'] .= ' ..';
+            $result['answer'] = (string) ($result['elements'][$i]);
+        } else {
+            $result['question']  .= " {$result['elements'][$i]}";
         }
     }
     return $result;
