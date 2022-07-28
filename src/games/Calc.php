@@ -2,33 +2,34 @@
 
 namespace BrainGames\Games\Calc;
 
-use function BrainGames\Engine\gameProgress;
-use function BrainGames\Engine\getIterationsCount;
-use function BrainGames\Engine\startGame;
+use function BrainGames\Engine\startBrainGame;
+use const BrainGames\Engine\ITERATIONS;
+use const BrainGames\Engine\MIN_VALUE;
+use const BrainGames\Engine\MAX_VALUE;
+
+const INSTRUCTION = 'What is the result of the expression?';
+const MIN_OPERATION_COUNT = 0;
+const MAX_OPERATION_COUNT = 2;
 
 function startBrainCalc()
 {
-    $instruction = 'What is the result of the expression?';
-    $name = startGame($instruction);
-    $iterationsCount = getIterationsCount();
-
-    for ($iteration = 0; $iteration < $iterationsCount; $iteration += 1) {
+    $questionAnswers = [];
+    for ($i = 0; $i < ITERATIONS; $i += 1) {
         $task = getRandomTask();
         $question = $task['question'];
         $correctAnswer = calculate($task['operation'], $task['num1'], $task['num2']);
-
-        if (gameProgress($question, $correctAnswer, $name, $iteration, $iterationsCount) !== true) {
-            break;
-        }
+        $questionAnswers[$i]['question'] = $question;
+        $questionAnswers[$i]['answer'] = $correctAnswer;
     }
+    startBrainGame(INSTRUCTION, $questionAnswers);
 }
 
 function getRandomTask()
 {
     $result = [];
-    $num1 = rand(1, 50);
-    $num2 = rand(1, 50);
-    $operationIndex = rand(0, 2);
+    $num1 = rand(MIN_VALUE, MAX_VALUE);
+    $num2 = rand(MIN_VALUE, MAX_VALUE);
+    $operationIndex = rand(MIN_OPERATION_COUNT, MAX_OPERATION_COUNT);
     $operations = ['+', '-', '*'];
 
     $result['question'] = "{$num1} {$operations[$operationIndex]} {$num2}";
