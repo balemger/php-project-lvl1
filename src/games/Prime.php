@@ -8,7 +8,7 @@ use const BrainGames\Engine\ITERATIONS;
 use const BrainGames\Engine\MAX_VALUE;
 use const BrainGames\Engine\MIN_VALUE;
 
-const INSTRUCTION = 'Answer "yes" if the number is prime, otherwise answer "no".';
+const INSTRUCTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 function startBrainPrime()
 {
