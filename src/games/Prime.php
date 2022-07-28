@@ -29,10 +29,8 @@ function isPrime($num)
     }
     $bCheck = true;
     $highestIntegralSquareRoot = floor(sqrt($num));
-    for ($i = 2; $i <= $highestIntegralSquareRoot; $i++)
-    {
-        if ($num % $i == 0)
-        {
+    for ($i = 2; $i <= $highestIntegralSquareRoot; $i++) {
+        if ($num % $i == 0) {
             $bCheck = false;
             break;
         }
