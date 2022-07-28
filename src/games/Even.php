@@ -3,6 +3,7 @@
 namespace BrainGames\Games\Even;
 
 use function BrainGames\Engine\startBrainGame;
+
 use const BrainGames\Engine\ITERATIONS;
 use const BrainGames\Engine\MAX_VALUE;
 use const BrainGames\Engine\MIN_VALUE;

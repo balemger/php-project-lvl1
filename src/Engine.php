@@ -5,7 +5,6 @@ namespace BrainGames\Engine;
 use function cli\line;
 use function cli\prompt;
 
-
 const ITERATIONS = 3;
 const MIN_VALUE = 1;
 const MAX_VALUE = 100;
@@ -15,13 +14,12 @@ function welcome()
     line('Welcome to the Brain Game!');
     $name = prompt('May I have your name?');
     line("Hello, %s!", $name);
+    return $name;
 }
 
 function startBrainGame($instruction, $questionAnswers)
 {
-    line('Welcome to the Brain Game!');
-    $name = prompt('May I have your name?');
-    line("Hello, %s!", $name);
+    $name = welcome();
     line($instruction);
 
     $iterationsCount = ITERATIONS;
@@ -29,6 +27,7 @@ function startBrainGame($instruction, $questionAnswers)
     for ($iteration = 0; $iteration < $iterationsCount; $iteration += 1) {
         $question = $questionAnswers[$iteration]['question'];
         $correctAnswer = $questionAnswers[$iteration]['answer'];
+
         $userAnswer = prompt("Question: $question");
 
         line("Your answer: $userAnswer");
