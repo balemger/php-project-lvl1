@@ -10,7 +10,7 @@ use function BrainGames\Engine\printUserAnswer;
 use function BrainGames\Engine\printWinMessage;
 use function BrainGames\Engine\startGame;
 
-function start()
+function startBrainCalc()
 {
     $name = startGame('What is the result of the expression?');
     $iterationsCount = getIterationsCount();

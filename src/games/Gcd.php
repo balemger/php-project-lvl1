@@ -10,7 +10,7 @@ use function BrainGames\Engine\printUserAnswer;
 use function BrainGames\Engine\printWinMessage;
 use function BrainGames\Engine\startGame;
 
-function start()
+function startBrainGcd()
 {
     $name = startGame('Find the greatest common divisor of given numbers.');
     $iterationsCount = getIterationsCount();

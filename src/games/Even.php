@@ -10,7 +10,7 @@ use function BrainGames\Engine\printUserAnswer;
 use function BrainGames\Engine\printWinMessage;
 use function BrainGames\Engine\startGame;
 
-function start()
+function startBrainEven()
 {
     $name = startGame('Answer "yes" if the number is even, otherwise answer "no".');
     $iterationsCount = getIterationsCount();
