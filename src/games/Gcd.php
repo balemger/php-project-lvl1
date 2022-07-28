@@ -16,7 +16,7 @@ function startBrainGcd()
     for ($i = 0; $i < ITERATIONS; $i += 1) {
         $task = getRandomPare();
         $question = $task['question'];
-        $correctAnswer = getGcd($task['num1'], $task['num2']);
+        $correctAnswer = (string) getGcd($task['num1'], $task['num2']);
         $questionAnswers[$i]['question'] = $question;
         $questionAnswers[$i]['answer'] = $correctAnswer;
     }
@@ -38,5 +38,5 @@ function getRandomPare()
 
 function getGcd($num1, $num2)
 {
-    return (string) (gmp_gcd($num1, $num2));
+    return $num1 % $num2 === 0 ? $num2 : getGcd($num2, $num1 % $num2);
 }
