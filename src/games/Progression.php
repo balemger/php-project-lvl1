@@ -13,6 +13,7 @@ const MIN_ELEMENTS_COUNT = 5;
 const MAX_ELEMENTS_COUNT = 10;
 const MIN_ELEMENTS_INTERVAL = 2;
 const MAX_ELEMENTS_INTERVAL = 5;
+const MIN_START_ELEMENT = 0;
 
 function startBrainProgression()
 {
@@ -32,17 +33,13 @@ function getRandomProgression()
     $result = [];
     $interval = rand(MIN_ELEMENTS_INTERVAL, MAX_ELEMENTS_INTERVAL);
     $count = rand(MIN_ELEMENTS_COUNT, MAX_ELEMENTS_COUNT);
-    $hiddenElement = rand(0, $count - 1);
+    $hiddenElement = rand(MIN_START_ELEMENT, $count - 1);
     $start = rand(MIN_VALUE, MAX_VALUE);
     $result['question'] = '';
     $result['elements'] = [];
 
     for ($i = 0; $i < $count; $i += 1) {
-        if ($i == 0) {
-            $result['elements'][$i]  = $start;
-        } else {
-            $result['elements'][$i]  = $result['elements'][$i - 1] + $interval;
-        }
+        $result['elements'][$i] = $i == 0 ? $start : $result['elements'][$i - 1] + $interval;
         if ($i == $hiddenElement) {
             $result['question'] .= ' ..';
             $result['answer'] = (string) ($result['elements'][$i]);
