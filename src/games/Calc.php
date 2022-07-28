@@ -40,7 +40,7 @@ function getRandomTask()
     return $result;
 }
 
-function calculate($operation, $num1, $num2)
+function calculate(string $operation, int $num1, int $num2)
 {
     $result = '';
     switch ($operation) {

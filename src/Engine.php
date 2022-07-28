@@ -17,7 +17,7 @@ function welcome()
     return $name;
 }
 
-function startBrainGame($instruction, $questionAnswers)
+function startBrainGame(string $instruction, array $questionAnswers)
 {
     $name = welcome();
     line($instruction);
