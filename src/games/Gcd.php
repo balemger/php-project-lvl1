@@ -2,34 +2,22 @@
 
 namespace BrainGames\Games\Gcd;
 
+use function BrainGames\Engine\gameProgress;
 use function BrainGames\Engine\getIterationsCount;
-use function BrainGames\Engine\printContinueMessage;
-use function BrainGames\Engine\printLoseMessage;
-use function BrainGames\Engine\printQuestion;
-use function BrainGames\Engine\printUserAnswer;
-use function BrainGames\Engine\printWinMessage;
 use function BrainGames\Engine\startGame;
 
 function startBrainGcd()
 {
-    $name = startGame('Find the greatest common divisor of given numbers.');
+    $instruction = 'Find the greatest common divisor of given numbers.';
+    $name = startGame($instruction);
     $iterationsCount = getIterationsCount();
 
     for ($iteration = 0; $iteration < $iterationsCount; $iteration += 1) {
         $task = getRandomPare();
+        $question = $task['question'];
         $correctAnswer = getGcd($task['num1'], $task['num2']);
 
-        $userAnswer = printQuestion($task['question']);
-        printUserAnswer($userAnswer);
-
-        if ($userAnswer === $correctAnswer) {
-            printContinueMessage();
-        } else {
-            printLoseMessage($name, $userAnswer, $correctAnswer);
-            break;
-        }
-        if ($iteration === $iterationsCount - 1) {
-            printWinMessage($name);
+        if (gameProgress($question, $correctAnswer, $name, $iteration, $iterationsCount) !== true) {
             break;
         }
     }

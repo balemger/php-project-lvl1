@@ -50,3 +50,21 @@ function getIterationsCount()
 {
     return 3;
 }
+
+function gameProgress($question, $correctAnswer, $name, $iteration, $iterationsCount)
+{
+    $userAnswer = printQuestion($question);
+    printUserAnswer($userAnswer);
+
+    if ($userAnswer === $correctAnswer) {
+        printContinueMessage();
+        if ($iteration === $iterationsCount - 1) {
+            printWinMessage($name);
+            return false;
+        }
+        return true;
+    } else {
+        printLoseMessage($name, $userAnswer, $correctAnswer);
+    }
+    return false;
+}
