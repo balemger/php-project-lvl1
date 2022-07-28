@@ -22,7 +22,7 @@ function startBrainPrime()
 }
 
 
-function isPrime($num)
+function isPrime(int $num)
 {
     if ($num == 1) {
         return false;

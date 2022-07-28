@@ -35,6 +35,7 @@ function getRandomProgression()
     $hiddenElement = rand(0, $count - 1);
     $start = rand(MIN_VALUE, MAX_VALUE);
     $result['question'] = '';
+    $result['elements'] = [];
 
     for ($i = 0; $i < $count; $i += 1) {
         if ($i == 0) {
